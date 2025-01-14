@@ -11,7 +11,7 @@ from rest_framework.test import APIClient
 class TestPostList:
     def setup_method(self):
         self.client = APIClient()
-        self.list_url = reverse("blogpost-list")
+        self.list_url = reverse("post-list")
 
     def test_get_post_list(self):
         response = self.client.get(self.list_url)
@@ -26,7 +26,7 @@ class TestBlogPostDetail:
         self.client = APIClient()
 
     def get_detail_url(self, pk):
-        return reverse("blogpost-detail", args=[pk])
+        return reverse("post-detail", args=[pk])
 
     def test_get_post_detail(self):
         detail_url = self.get_detail_url(1)

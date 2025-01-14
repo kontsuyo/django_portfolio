@@ -8,6 +8,9 @@ class PostListView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
 
 class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
