@@ -13,4 +13,3 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ["id", "username", "blog_posts"]
-        # fields = "__all__"
