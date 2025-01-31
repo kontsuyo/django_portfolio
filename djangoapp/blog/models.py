@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from accounts.models import CustomUser
 
@@ -16,6 +17,11 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["published_at"]
+
+    def save(self, *args, **kwargs):
+        if self.is_published and self.published_at is None:
+            self.published_at = timezone.now()
+        super(Post, self).save(*args, **kwargs)  # Call the real save() method
 
     def __str__(self):
         return str(self.title)
