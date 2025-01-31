@@ -133,3 +133,20 @@ class TestPostModel:
             author=self.user,
         )
         assert str(post) == "Test Post"
+
+    def test_published_at_updated_on_publish(self):
+        post = Post.objects.create(
+            title="Test Post",
+            content="Test content.",
+            author=self.user,
+            is_published=False,
+        )
+
+        assert post.published_at is None
+
+        post.is_published = True
+        post.save()
+
+        post.refresh_from_db()
+        assert post.published_at is not None
+        assert isinstance(post.published_at, timezone.datetime)
