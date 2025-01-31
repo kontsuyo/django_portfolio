@@ -5,3 +5,4 @@ django-environ
 psycopg2-binary == 2.9.6
 pylint-django
 pytest-django
+pytest-xdist
